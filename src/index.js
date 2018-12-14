@@ -1,7 +1,7 @@
-import Draggable from './draggable';
+import Marker from './marker';
 import Target from './target';
 
 window.onLoad = (()=> {
-  new Draggable('#marker');
+  new Marker('#marker');
   new Target('#target');
 })();
