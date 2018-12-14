@@ -1,10 +1,11 @@
 import Hammer from 'hammerjs'
 
 class Marker {
-  constructor(elementSelector) {
+  constructor(elementSelector, target) {
     this.elem = document.querySelector(`${elementSelector} .marker-box`);
+    this.target = target
 
-    this.hammerSetup();
+    this._setMouseBinds();
   }
  
   move(e) {
@@ -14,20 +15,29 @@ class Marker {
     `
   }
 
-  hammerSetup() {
-    const marker = this;
-    window.addEventListener('mousedown', e => {
-      marker.move({ x: e.clientX, y: e.clientY });
-    })
+  // private
 
+  _setMouseBinds() {
+    window.addEventListener('mousedown', e => { this._clickBind(e, this) })
+    this._hammerSetup();
+    window.addEventListener('mouseup', this._mouseUpBind)
+  }
+
+  _clickBind(e, marker) {
+    marker.move({ x: e.clientX, y: e.clientY });
+  }
+
+  _hammerSetup() {
+    const marker = this;
     this.hammer = new Hammer(window, {});
     this.hammer.on('pan', function(ev) {
       marker.move(ev.center);
     });
+  }
 
-    window.addEventListener('mouseup', e => {
-      alert(`${e.clientX} ${e.clientY}`)
-    })
+  _mouseUpBind(e) {
+    const present = this.target.has_location({ x: e.clientX, y: e.clientY })
+    alert(present)
   }
 }
 
