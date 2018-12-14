@@ -1,41 +1,31 @@
-function dragable(el) {
-  var elem = document.querySelector(el);
-
-  function move(e) {
-    elem.style = `
-      top: ${e.clientY}px;
-      left: ${e.clientX}px;
-    `
+class Target {
+  constructor(circleSelector) {
+    this.elem = document.querySelector(circleSelector);
+    console.log(this.center());
   }
 
-  function up() {
-    window.removeEventListener('mousemove', move, true);
+  center() {
+    return {
+      x: (this.width() / 2) + this.offsetLeft(),
+      y: (this.height() / 2) + this.offsetTop()
+    }
   }
 
-  function down(e) {
-    alert(`${e.clientX} ${e.clientY}`);
-    window.addEventListener('mousemove', move, true);
+  width() {
+    return this.elem.offsetWidth
   }
 
-  function events() {
-    window.addEventListener('mousedown', down, false);
-    window.addEventListener('mouseup', up, false);
+  height() {
+    return this.elem.offsetHeight
   }
 
-  events();
-};
+  offsetLeft() {
+    return this.elem.offsetLeft
+  }
 
-function circleCenter(circleElement) {
-  circleWidth = circleElement.offsetWidth
-  circleHeight = circleElement.offsetHeight
-  circleCenterX = (circleWidth / 2) + circleElement.offsetLeft
-  circleCenterY = (circleHeight / 2) + circleElement.offsetTop
-
-  return {x: circleCenterX, y: circleCenterY}
+  offsetTop() {
+    return this.elem.offsetTop
+  }
 }
-circleElement = document.querySelector('#target');
-circleCenter(circleElement)
 
-window.onLoad = (()=> {
-  dragable('#marker');
-})();
+export default Target;
