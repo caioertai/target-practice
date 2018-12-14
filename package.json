@@ -1,0 +1,12 @@
+{
+  "name": "target",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Caio Andrade",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}
