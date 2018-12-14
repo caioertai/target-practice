@@ -2,6 +2,6 @@ import Marker from './marker';
 import Target from './target';
 
 window.onLoad = (()=> {
-  new Marker('#marker');
-  new Target('#target');
+  window.marker = new Marker('#marker');
+  window.target = new Target('#target');
 })();

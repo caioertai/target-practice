@@ -4,10 +4,22 @@ class Target {
     console.log(this.center());
   }
 
+  has_location(location) {
+    return this.has_x(location.x) && this.has_y(location.y)
+  }
+
+  has_x(xPos) {
+    return this.leftEdge() < xPos && xPos < this.rightEdge()
+  }
+
+  has_y(yPos) {
+    return this.topEdge() < yPos && yPos < this.bottomEdge()
+  }
+
   center() {
     return {
-      x: (this.width() / 2) + this.offsetLeft(),
-      y: (this.height() / 2) + this.offsetTop()
+      x: (this.width() / 2) + this.leftEdge(),
+      y: (this.height() / 2) + this.topEdge()
     }
   }
 
@@ -19,12 +31,20 @@ class Target {
     return this.elem.offsetHeight
   }
 
-  offsetLeft() {
+  leftEdge() {
     return this.elem.offsetLeft
   }
 
-  offsetTop() {
+  topEdge() {
     return this.elem.offsetTop
+  }
+
+  rightEdge() {
+    return this.leftEdge() + this.width()
+  }
+
+  bottomEdge() {
+    return this.topEdge() + this.height()
   }
 }
 
