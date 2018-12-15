@@ -1,3 +1,5 @@
+import Circle from './circle'
+
 class Target {
   constructor(circleSelector) {
     this.elem = document.querySelector(circleSelector);
