@@ -60,7 +60,7 @@ body {
   background-color: #ee0;
 }
 
-.circle-12 {
+.center-dot {
   background-color: #000;
 }
 
@@ -75,7 +75,7 @@ body {
 .circle-09,
 .circle-10,
 .circle-11,
-.circle-12 {
+.center-dot {
   border-radius: 50%;
   border: 1px solid #333;
   position: absolute;
@@ -155,7 +155,7 @@ body {
   width: 5%;
 }
 
-.circle-12 {
+.center-dot {
   top: 49.5%;
   left: 49.5%;
   height: 1%;

@@ -7,7 +7,7 @@ class Target {
   }
 
   _initializeCircles() {
-    return [...this.elem.children].map(circle => {
+    return [...this.elem.querySelectorAll('.circle')].map(circle => {
       return new Circle(circle)
     })
   }
