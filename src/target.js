@@ -5,15 +5,17 @@ class Target {
   }
 
   has_location(location) {
-    return this.has_x(location.x) && this.has_y(location.y)
-  }
+    const center = this.center()
+    const xP = location.x;
+    const yP = location.y;
+    const xC = center.x
+    const yC = center.y
 
-  has_x(xPos) {
-    return this.leftEdge() < xPos && xPos < this.rightEdge()
-  }
+    const distanceFromCenter = Math.sqrt(
+      Math.pow((xP - xC), 2) + Math.pow((yP - yC), 2)
+    )
 
-  has_y(yPos) {
-    return this.topEdge() < yPos && yPos < this.bottomEdge()
+    return distanceFromCenter < this.radius();
   }
 
   center() {
@@ -21,6 +23,10 @@ class Target {
       x: (this.width() / 2) + this.leftEdge(),
       y: (this.height() / 2) + this.topEdge()
     }
+  }
+
+  radius() {
+    return this.width() / 2;
   }
 
   width() {
@@ -37,14 +43,6 @@ class Target {
 
   topEdge() {
     return this.elem.offsetTop
-  }
-
-  rightEdge() {
-    return this.leftEdge() + this.width()
-  }
-
-  bottomEdge() {
-    return this.topEdge() + this.height()
   }
 }
 
